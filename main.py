@@ -3,10 +3,11 @@
 import sys
 from xml.etree.ElementTree import Element, SubElement, tostring
 
-import zhihu
-import wolframalpha
-import wikipedia
-import stackoverflow
+from zhihu import Zhihu
+from wolframalpha import Wolframalpha
+from wikipedia import Wikipedia
+from stackoverflow import Stackoverflow
+from google import Google
 
 
 def convert_list_to_xml(result_list, _type):
@@ -29,23 +30,14 @@ def convert_list_to_xml(result_list, _type):
     return tostring(items, encoding='unicode')
 
 
-def unknown_search_engine():
-    return raise_error()
-
-
-def raise_error(error):
-    if not isinstance(error, str):
-        error = 'Unknown search engine'
-    return [{'title': 'Error', 'subtitle': error, 'icon': 'error.png', 'quicklookurl': ''}]
-
-
 if __name__ == '__main__':
     fd = {
-        'zhihu': zhihu.search,
-        'wolframalpha': wolframalpha.search,
-        'wikipedia': wikipedia.search,
-        'stackoverflow': stackoverflow.search
+        'zhihu': Zhihu,
+        'wolframalpha': Wolframalpha,
+        'wikipedia': Wikipedia,
+        'stackoverflow': Stackoverflow,
+        'google': Google
     }
-    data = fd.get(sys.argv[1], raise_error)(sys.argv[2:])
-    xml = convert_list_to_xml(result_list=data, _type=sys.argv[1])
+    r = fd.get(sys.argv[1])(sys.argv[2:])
+    xml = convert_list_to_xml(result_list=r.parser(), _type=sys.argv[1])
     sys.stdout.write(xml)

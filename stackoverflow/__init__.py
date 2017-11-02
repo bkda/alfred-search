@@ -1,5 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from stackoverflow.search import search
+from stackoverflow.search import Stackoverflow
 
-__all__ = ('search')
+__all__ = ('Stackoverflow')

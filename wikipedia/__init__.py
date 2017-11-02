@@ -1,5 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from wikipedia.search import search
+from wikipedia.search import Wikipedia
 
-__all__ = ('search')
+__all__ = ('Wikipedia')

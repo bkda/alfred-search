@@ -1,5 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from zhihu.search import search
+from zhihu.search import Zhihu
 
-__all__ = ('search')
+__all__ = ('Zhihu')
