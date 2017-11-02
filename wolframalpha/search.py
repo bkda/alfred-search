@@ -10,5 +10,5 @@ class Wolframalpha(Base):
             urlencode({'i': ' '.join(self.query)}))
 
     def parser(self):
-        return [{'title': i['input'], 'subtitle': i['description'], 'icon': './wolframalpha/logo.png',
+        return [{'title': i['input'], 'subtitle': i.get('description'), 'icon': './wolframalpha/logo.png',
                  'link': 'https://www.wolframalpha.com' + i['waPath']} for i in self.data['results']]
