@@ -6,6 +6,7 @@ from xml.etree.ElementTree import Element, SubElement, tostring
 import zhihu
 import wolframalpha
 import wikipedia
+import stackoverflow
 
 
 def convert_list_to_xml(result_list, _type):
@@ -42,7 +43,8 @@ if __name__ == '__main__':
     fd = {
         'zhihu': zhihu.search,
         'wolframalpha': wolframalpha.search,
-        'wikipedia': wikipedia.search
+        'wikipedia': wikipedia.search,
+        'stackoverflow': stackoverflow.search
     }
     data = fd.get(sys.argv[1], raise_error)(sys.argv[2:])
     xml = convert_list_to_xml(result_list=data, _type=sys.argv[1])
